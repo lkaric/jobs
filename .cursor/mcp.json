@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "Supabase": {
+      "url": "https://mcp.supabase.com/mcp",
+      "headers": {}
+    },
+    "next-devtools": {
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp@latest"]
+    },
+    "shadcn": {
+      "command": "npx",
+      "args": ["shadcn@latest", "mcp"]
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/package",
+  "name": "jobs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Jobs is a first transparent job board in the region.",
+  "homepage": "https://jobs.js.rs/",
+  "author": {
+    "name": "Lazar Karic",
+    "email": "hi@lazar.sh",
+    "url": "https://lazar.sh/"
+  },
+  "license": "AGPL-3.0-or-later",
+  "packageManager": "pnpm@10.26.1",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "biome check",
+    "format": "biome format --write",
+    "check:types": "tsc --noEmit --pretty",
+    "prepare": "node .husky/install.mjs"
+  },
+  "dependencies": {
+    "next": "16.1.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.0",
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "@commitlint/types": "^20.2.0",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "typescript": "^5"
+  }
+}

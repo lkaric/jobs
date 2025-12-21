@@ -1,0 +1,38 @@
+name: "Setup Project"
+description: "Setup Node.js and pnpm for the project"
+
+inputs:
+  node-version:
+    description: "Node.js version to use"
+    required: false
+    default: "24.12.0"
+  pnpm-version:
+    description: "pnpm version to use"
+    required: false
+    default: "10.26.1"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: ${{ inputs.pnpm-version }}
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: "pnpm"
+
+    - name: Restore or cache node_modules
+      id: cache-node-modules
+      uses: actions/cache@v5
+      with:
+        path: node_modules
+        key: node-modules-${{ inputs.node-version }}-${{ hashFiles('pnpm-lock.yaml') }}
+
+    - name: Install dependencies
+      if: steps.cache-node-modules.outputs.cache-hit != 'true'
+      shell: bash
+      run: pnpm install --frozen-lockfile
