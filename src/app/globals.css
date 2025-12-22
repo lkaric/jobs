@@ -1,1 +1,73 @@
+/** biome-ignore-all lint/suspicious/noUnknownAtRules: Tailwindcss */
 @import "tailwindcss";
+
+@theme {
+    --font-family-serif: "Playfair Display", serif;
+    
+    --color-canvas-light: #fdfcf8;
+    --color-canvas-dark: #0a0a0a;
+    --color-brand-lime: #d9f99d;
+    --color-brand-accent: #bef264;
+  }
+  
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+      border-color: var(--color-gray-200, currentcolor);
+    }
+  
+    html {
+      color-scheme: light dark;
+    }
+  
+    * {
+      @apply border-neutral-200 dark:border-white/10;
+    }
+  
+    html,
+    body {
+      @apply bg-canvas-light dark:bg-canvas-dark text-neutral-900 dark:text-white transition-colors duration-500;
+      font-family: "Inter", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  
+    /* Selection color */
+    ::selection {
+      @apply bg-brand-accent text-neutral-900;
+    }
+  
+    .using-mouse * {
+      outline: none !important;
+    }
+  }
+  
+  /* Custom animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  

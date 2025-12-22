@@ -1,15 +1,11 @@
+import { clsx } from 'clsx';
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Playfair_Display } from 'next/font/google';
 
 import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const playfairDisplay = Playfair_Display({
+  variable: '--font-playfair-display',
   subsets: ['latin'],
 });
 
@@ -25,7 +21,19 @@ interface RootLayoutProps {
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
+      <body
+        className={clsx(
+          playfairDisplay.variable,
+          'bg-canvas-light',
+          'dark:bg-canvas-dark',
+          'text-neutral-900',
+          'dark:text-white',
+          'transition-colors',
+          'duration-500',
+        )}
+      >
+        {children}
+      </body>
     </html>
   );
 };
