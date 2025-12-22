@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/package",
-  "name": "jobs",
+  "name": "@jobs/client",
   "version": "0.1.0",
   "private": true,
   "description": "Jobs is a first transparent job board in the region.",

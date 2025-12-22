@@ -43,6 +43,7 @@ export const EarlyAccess: React.FC = () => {
             <Form onSubmit={handleSubmit} className="relative max-w-md mx-auto">
               <Input
                 type="email"
+                aria-label="Email address for early access"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="enter@email.com"
@@ -52,8 +53,9 @@ export const EarlyAccess: React.FC = () => {
               <Button
                 type="submit"
                 className="absolute right-2 top-2 bottom-2 aspect-square rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 flex items-center justify-center hover:scale-105 active:scale-95 transition-all"
+                aria-hidden="true"
               >
-                <ArrowRight size={20} aria-hidden="true" />
+                <ArrowRight size={20} />
               </Button>
             </Form>
           ) : (
