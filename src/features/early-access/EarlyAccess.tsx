@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
 import { useState } from 'react';
+import { Button, Form, Input } from 'react-aria-components';
 
 export const EarlyAccess: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -39,8 +40,8 @@ export const EarlyAccess: React.FC = () => {
           </p>
 
           {!subscribed ? (
-            <form onSubmit={handleSubmit} className="relative max-w-md mx-auto">
-              <input
+            <Form onSubmit={handleSubmit} className="relative max-w-md mx-auto">
+              <Input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -48,13 +49,13 @@ export const EarlyAccess: React.FC = () => {
                 className="w-full pl-6 pr-16 py-4 rounded-full bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 focus:border-neutral-900 dark:focus:border-brand-accent outline-none text-neutral-900 dark:text-white placeholder-neutral-400 transition-all shadow-xl"
                 required
               />
-              <button
+              <Button
                 type="submit"
                 className="absolute right-2 top-2 bottom-2 aspect-square rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 flex items-center justify-center hover:scale-105 active:scale-95 transition-all"
               >
                 <ArrowRight size={20} aria-hidden="true" />
-              </button>
-            </form>
+              </Button>
+            </Form>
           ) : (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
