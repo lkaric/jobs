@@ -1,6 +1,6 @@
 'use server';
 import { z } from 'zod';
-import { db, waitlist } from '@/db';
+import { getDb, waitlist } from '@/db';
 
 const CreateWaitlistSchema = z.object({
   email: z.email().min(1).max(255),
@@ -18,7 +18,7 @@ export const createWaitlist = async (payload: CreateWaitlistPayload) => {
 
     const { email } = validation.data;
 
-    await db.insert(waitlist).values({ email }).onConflictDoNothing({ target: waitlist.email });
+    await getDb().insert(waitlist).values({ email }).onConflictDoNothing({ target: waitlist.email });
 
     return { success: true };
   } catch (error) {

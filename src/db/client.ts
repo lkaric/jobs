@@ -3,10 +3,18 @@ import { drizzle } from 'drizzle-orm/neon-http';
 import * as authSchema from './auth-schema';
 import * as schema from './schema';
 
-if (!process.env.DATABASE_URL) {
-  throw new Error('DATABASE_URL is not set in the .env file');
+let _db: ReturnType<typeof drizzle> | undefined;
+
+export function getDb() {
+  if (_db) return _db;
+
+  const url = process.env.DATABASE_URL;
+  if (!url) {
+    throw new Error('DATABASE_URL is not set in the .env file');
+  }
+
+  const sql = neon(url);
+  _db = drizzle(sql, { schema: { ...authSchema, ...schema } });
+
+  return _db;
 }
-
-const sql = neon(process.env.DATABASE_URL);
-
-export const db = drizzle(sql, { schema: { ...authSchema, ...schema } });
