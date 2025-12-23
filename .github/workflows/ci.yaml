@@ -9,8 +9,8 @@ on:
 jobs:
   build:
     env:
-      BETTER_AUTH_GITHUB_CLIENT_ID: ${{ secrets.BETTER_AUTH_GITHUB_CLIENT_ID }}
-      BETTER_AUTH_GITHUB_CLIENT_SECRET: ${{ secrets.BETTER_AUTH_GITHUB_CLIENT_SECRET }}
+      BETTER_AUTH_GITHUB_CLIENT_ID: ${{ vars.BETTER_AUTH_GITHUB_CLIENT_ID }}
+      BETTER_AUTH_GITHUB_CLIENT_SECRET: ${{ vars.BETTER_AUTH_GITHUB_CLIENT_SECRET }}
     strategy:
       matrix:
         node-version: [24.x]
