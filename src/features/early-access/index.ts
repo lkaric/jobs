@@ -1,1 +1,1 @@
-export * from './EarlyAccess';
+export * from './components';

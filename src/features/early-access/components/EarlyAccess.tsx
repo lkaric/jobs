@@ -1,19 +1,38 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
+import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
 import { useState } from 'react';
 import { Button, Form, Input } from 'react-aria-components';
+import { type SubmitHandler, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { createWaitlist } from '../actions';
+
+const formSchema = z.object({
+  email: z.email().min(1).max(255),
+});
 
 export const EarlyAccess: React.FC = () => {
-  const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: '',
+    },
+  });
+
+  const onSubmit: SubmitHandler<z.infer<typeof formSchema>> = async (data) => {
+    const result = await createWaitlist(data);
+
+    if (result.success) {
       setSubscribed(true);
-      setTimeout(() => setEmail(''), 1000);
     }
   };
 
@@ -40,14 +59,18 @@ export const EarlyAccess: React.FC = () => {
           </p>
 
           {!subscribed ? (
-            <Form onSubmit={handleSubmit} className="relative max-w-md mx-auto">
+            <Form onSubmit={handleSubmit(onSubmit)} className="relative max-w-md mx-auto">
               <Input
+                {...register('email')}
                 type="email"
                 aria-label="Email address for early access"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 placeholder="enter@email.com"
-                className="w-full pl-6 pr-16 py-4 rounded-full bg-white dark:bg-white/5 border border-neutral-200 dark:border-white/10 focus:border-neutral-900 dark:focus:border-brand-accent outline-none text-neutral-900 dark:text-white placeholder-neutral-400 transition-all shadow-xl"
+                className={clsx(
+                  'w-full pl-6 pr-16 py-4 rounded-full bg-white dark:bg-white/5 border outline-none text-neutral-900 dark:text-white placeholder-neutral-400 transition-all shadow-xl',
+                  errors.email
+                    ? 'border-red-500 dark:border-red-400 focus:border-red-500 dark:focus:border-red-400'
+                    : 'border-neutral-200 dark:border-white/10 focus:border-neutral-900 dark:focus:border-brand-accent',
+                )}
                 required
               />
               <Button
