@@ -1,5 +1,4 @@
 'use server';
-import { eq } from 'drizzle-orm';
 import { z } from 'zod';
 import { db, waitlist } from '@/db';
 
