@@ -19,16 +19,28 @@
     "lint": "biome check",
     "format": "biome format --write",
     "check:types": "tsc --noEmit --pretty",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
     "prepare": "node .husky/install.mjs"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@neondatabase/serverless": "^1.0.2",
+    "@paralleldrive/cuid2": "^3.0.4",
+    "better-auth": "^1.4.8",
     "clsx": "^2.1.1",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.45.1",
     "framer-motion": "^12.23.26",
     "lucide-react": "^0.562.0",
     "next": "16.1.0",
     "react": "19.2.3",
     "react-aria-components": "^1.14.0",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "react-hook-form": "^7.69.0",
+    "zod": "^4.2.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
@@ -39,6 +51,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.8",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "postcss": "^8.5.6",
