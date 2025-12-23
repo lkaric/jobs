@@ -19,13 +19,7 @@ export const createWaitlist = async (payload: CreateWaitlistPayload) => {
 
     const { email } = validation.data;
 
-    const existing = await db.query.waitlist.findFirst({ where: eq(waitlist.email, email) });
-
-    if (existing) {
-      return { success: true };
-    }
-
-    await db.insert(waitlist).values({ email });
+    await db.insert(waitlist).values({ email }).onConflictDoNothing({ target: waitlist.email });
 
     return { success: true };
   } catch (error) {
