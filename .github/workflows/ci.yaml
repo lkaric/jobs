@@ -11,6 +11,7 @@ jobs:
     env:
       BETTER_AUTH_GITHUB_CLIENT_ID: ${{ secrets.BETTER_AUTH_GITHUB_CLIENT_ID || vars.BETTER_AUTH_GITHUB_CLIENT_ID || 'dummy' }}
       BETTER_AUTH_GITHUB_CLIENT_SECRET: ${{ secrets.BETTER_AUTH_GITHUB_CLIENT_SECRET || 'dummy' }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL || 'dummy' }}
     strategy:
       matrix:
         node-version: [24.x]
